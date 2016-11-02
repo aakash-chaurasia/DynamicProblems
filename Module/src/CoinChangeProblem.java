@@ -20,7 +20,7 @@ public class CoinChangeProblem {
     private int getMinCoins(int sum, int[] coins) {
         int[] minSum = new int[sum + 1];
         for (int i = 0; i < sum + 1; i++) {
-            minSum[i] = Integer.MAX_VALUE - sum;
+            minSum[i] = sum + 1;
         }
         minSum[0] = 0;
         for (int i = 1; i < sum + 1; i++) {

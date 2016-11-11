@@ -7,7 +7,7 @@ import java.util.Iterator;
 public class ContigousSubArraySumLessThanK {
     public static void main(String[] args) {
         ContigousSubArraySumLessThanK contigousSubArraySumLessThanK = new ContigousSubArraySumLessThanK();
-        int a[] = {3, 2, -3, 1, 2, 4, 1, 2, 4};
+        int a[] = {10, 2, -3, 1, 2, 4, 1, 2, 4};
         ArrayList<Integer> res = contigousSubArraySumLessThanK.getWindow(a, 7);
         for (Iterator<Integer> iterator = res.iterator(); iterator.hasNext(); ) {
             Integer next =  iterator.next();
@@ -17,16 +17,16 @@ public class ContigousSubArraySumLessThanK {
 
     ArrayList<Integer> getWindow(int a[], int k) {
         int maxStart = 0;
-        int maxEnd = 0;
+        int maxEnd = -1;
         int start = 0;
-        int sum = a[start];
         ArrayList<Integer> result = new ArrayList<>();
-        for (int i = 1; i < a.length; i++) {
-            sum += a[i];
+        int sum = 0;
+        for (int i = 0; i < a.length; i++) {
             while(start < i && sum > k) {
                 sum -= a[start++];
             }
-            if(i - start > maxEnd - maxStart) {
+            sum += a[i];
+            if(sum <= k && i - start > maxEnd - maxStart) {
                 maxEnd = i;
                 maxStart = start;
             }
